@@ -1,0 +1,2 @@
+# go-capture
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/25052b14a75a4e139bdfa7761f2774b5)](https://app.codacy.com/gh/hireza/go-capture?utm_source=github.com&utm_medium=referral&utm_content=hireza/go-capture&utm_campaign=Badge_Grade)

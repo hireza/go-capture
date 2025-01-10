@@ -1,0 +1,27 @@
+version: v1.0.1
+tag: "v{{ .Version }}"
+commit: "{{ .Commit }}"
+
+github:
+  owner: "hireza" # Replace with your GitHub username
+  repo: "go-capture" # Replace with your repository name
+  token: "{{ .GitHubToken }}" # Use the GITHUB_TOKEN secret
+
+bump:
+  major: "^BREAKING CHANGE|^breaking" # Major version bump for breaking changes (e.g., BREAKING CHANGE or Breaking).
+  minor: "^feat|^new|^update|^add" # Minor version bump for new features or significant changes (e.g., feat, New, Update).
+  patch: "^fix|^perf|^refactor" # Patch version bump for bug fixes, performance improvements, or refactoring (e.g., fix, Fix, perf, chore, refactor).
+
+changelog:
+  format: |
+    ## Changelog
+    {{ range .Commits }}
+    - {{ .Message }}
+    {{ end }}
+  exclude:
+    - docs
+    - test
+    - ci
+    - build
+    - style
+    - chore

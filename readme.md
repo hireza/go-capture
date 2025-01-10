@@ -32,14 +32,24 @@ import (
 	"github.com/hireza/go-capture"
 )
 
+func printSomethingString() {
+	fmt.Println("Hello, Go-Capture!")
+}
+
+func printSomethingSliceInt() {
+	fmt.Println([]int{1, 2, 3})
+}
+
 func main() {
 	// Example using method PipeDirectly
+	// PipeDirectly uses the default pipe-based capturing (may block on large output).
 	output := capture.UseMethod(capture.PipeDirectly).Output(func() {
-		fmt.Println("Hello, Go-Capture!")
+		 printSomethingString()
 	})
 	fmt.Println("Captured Output as String:", output.AsString())
 
 	// Example using method PipeWithGoroutine
+	// PipeWithGoroutine uses a goroutine to read and buffer data, avoiding blocking.
 	output = capture.UseMethod(capture.PipeWithGoroutine).Output(func() {
 		fmt.Println("Hello from Goroutine!")
 	})
@@ -54,6 +64,16 @@ func main() {
 	// You can convert it to the other data type
 	// Use .AsBool(), .AsInt(), .AsByte(), etc...
 	// Check the complete method on main.go
+	output = capture.Output(func() {
+		printSomethingSliceInt()
+	})
+
+	res, err := output.AsSliceInt()
+	if err != nil {
+		fmt.Errorf("failed to convert output to slice of integers: %v", err)
+		return
+	}
+	fmt.Println("Captured Output as Slice of Integers:", res)
 }
 ```
 

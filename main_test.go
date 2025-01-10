@@ -697,6 +697,7 @@ func TestCapturedOutputAsSliceInt(t *testing.T) {
 		want    []int
 		wantErr bool
 	}{
+		{"[1 2 3]", []int{1, 2, 3}, false},
 		{"[1, 2, 3]", []int{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []int{0, 0, 1}, true},
 		{"[]", []int{}, false},
@@ -724,6 +725,7 @@ func TestCapturedOutputAsSliceInt8(t *testing.T) {
 		want    []int8
 		wantErr bool
 	}{
+		{"[1 2 3]", []int8{1, 2, 3}, false},
 		{"[1, 2, 3]", []int8{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []int8{0, 0, 1}, true},
 		{"[]", []int8{}, false},
@@ -751,6 +753,7 @@ func TestCapturedOutputAsSliceInt16(t *testing.T) {
 		want    []int16
 		wantErr bool
 	}{
+		{"[1 2 3]", []int16{1, 2, 3}, false},
 		{"[1, 2, 3]", []int16{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []int16{0, 0, 1}, true},
 		{"[]", []int16{}, false},
@@ -778,6 +781,7 @@ func TestCapturedOutputAsSliceInt32(t *testing.T) {
 		want    []int32
 		wantErr bool
 	}{
+		{"[1 2 3]", []int32{1, 2, 3}, false},
 		{"[1, 2, 3]", []int32{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []int32{0, 0, 1}, true},
 		{"[]", []int32{}, false},
@@ -805,6 +809,7 @@ func TestCapturedOutputAsSliceInt64(t *testing.T) {
 		want    []int64
 		wantErr bool
 	}{
+		{"[1 2 3]", []int64{1, 2, 3}, false},
 		{"[1, 2, 3]", []int64{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []int64{0, 0, 1}, true},
 		{"[]", []int64{}, false},
@@ -832,6 +837,7 @@ func TestCapturedOutputAsSliceUint(t *testing.T) {
 		want    []uint
 		wantErr bool
 	}{
+		{"[1 2 3]", []uint{1, 2, 3}, false},
 		{"[1, 2, 3]", []uint{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uint{0, 0, 1}, true},
 		{"[]", []uint{}, false},
@@ -859,6 +865,7 @@ func TestCapturedOutputAsSliceUint8(t *testing.T) {
 		want    []uint8
 		wantErr bool
 	}{
+		{"[1 2 3]", []uint8{1, 2, 3}, false},
 		{"[1, 2, 3]", []uint8{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uint8{0, 0, 1}, true},
 		{"[]", []uint8{}, false},
@@ -886,6 +893,7 @@ func TestCapturedOutputAsSliceUint16(t *testing.T) {
 		want    []uint16
 		wantErr bool
 	}{
+		{"[1 2 3]", []uint16{1, 2, 3}, false},
 		{"[1, 2, 3]", []uint16{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uint16{0, 0, 1}, true},
 		{"[]", []uint16{}, false},
@@ -913,6 +921,7 @@ func TestCapturedOutputAsSliceUint32(t *testing.T) {
 		want    []uint32
 		wantErr bool
 	}{
+		{"[1 2 3]", []uint32{1, 2, 3}, false},
 		{"[1, 2, 3]", []uint32{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uint32{0, 0, 1}, true},
 		{"[]", []uint32{}, false},
@@ -940,6 +949,7 @@ func TestCapturedOutputAsSliceUint64(t *testing.T) {
 		want    []uint64
 		wantErr bool
 	}{
+		{"[1 2 3]", []uint64{1, 2, 3}, false},
 		{"[1, 2, 3]", []uint64{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uint64{0, 0, 1}, true},
 		{"[]", []uint64{}, false},
@@ -967,6 +977,7 @@ func TestCapturedOutputAsSliceUintptr(t *testing.T) {
 		want    []uintptr
 		wantErr bool
 	}{
+		{"[1 2 3]", []uintptr{1, 2, 3}, false},
 		{"[1, 2, 3]", []uintptr{1, 2, 3}, false},
 		{"[\"hello\", \"world\", 1]", []uintptr{0, 0, 1}, true},
 		{"[]", []uintptr{}, false},
@@ -994,6 +1005,7 @@ func TestCapturedOutputAsSliceByte(t *testing.T) {
 		want    []byte
 		wantErr bool
 	}{
+		{"[97 98 99]", []byte{'a', 'b', 'c'}, false},
 		{"[97, 98, 99]", []byte{'a', 'b', 'c'}, false},
 		{"[\"hello\", \"world\", 1]", []byte{0, 0, 1}, true},
 		{"[]", []byte{}, false},
@@ -1021,6 +1033,7 @@ func TestCapturedOutputAsSliceRune(t *testing.T) {
 		want    []rune
 		wantErr bool
 	}{
+		{"[\"a\" \"b\" \"c\"]", []rune{0, 0, 0}, true},
 		{"[\"a\", \"b\", \"c\"]", []rune{0, 0, 0}, true},
 		{"[\"hello\", \"world\", 1]", []rune{0, 0, 1}, true},
 		{"[]", []rune{}, false},
@@ -1048,6 +1061,7 @@ func TestCapturedOutputAsSliceFloat32(t *testing.T) {
 		want    []float32
 		wantErr bool
 	}{
+		{"[1.0 2.5 3.14]", []float32{1.0, 2.5, 3.14}, false},
 		{"[1.0, 2.5, 3.14]", []float32{1.0, 2.5, 3.14}, false},
 		{"[\"hello\", \"world\", 1]", []float32{0, 0, 1}, true},
 		{"[]", []float32{}, false},
@@ -1084,6 +1098,7 @@ func TestCapturedOutputAsSliceFloat64(t *testing.T) {
 		want    []float64
 		wantErr bool
 	}{
+		{"[1.0 2.5 3.14]", []float64{1.0, 2.5, 3.14}, false},
 		{"[1.0, 2.5, 3.14]", []float64{1.0, 2.5, 3.14}, false},
 		{"[\"hello\", \"world\", 1]", []float64{0, 0, 1}, true},
 		{"[]", []float64{}, false},
@@ -1164,6 +1179,7 @@ func TestCapturedOutputAsSliceBool(t *testing.T) {
 		want    []bool
 		wantErr bool
 	}{
+		{"[true false true]", []bool{true, false, true}, false},
 		{"[true, false, true]", []bool{true, false, true}, false},
 		{"[]", []bool{}, false},
 		{"invalid", nil, true},
@@ -1193,6 +1209,9 @@ func TestCapturedOutputAsSliceString(t *testing.T) {
 		want    []string
 		wantErr bool
 	}{
+		{`["hello" "world"]`, []string{"hello", "world"}, false},
+		{`["hello", "world"]`, []string{"hello", "world"}, false},
+		{"[\"hello\" \"world\"]", []string{"hello", "world"}, false},
 		{"[\"hello\", \"world\"]", []string{"hello", "world"}, false},
 		{"[\"hello\", \"world\", \"2\"]", []string{"hello", "world", "2"}, false},
 		{"[]", []string{}, false},

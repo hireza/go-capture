@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"io"
 	"os"
+	"regexp"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -242,135 +244,191 @@ func (o Result) AsComplex128() (complex128, error) {
 	return result, err
 }
 
+func cleanInput(input string) string {
+	// Remove square brackets and trim any surrounding whitespace.
+	cleaned := strings.TrimSpace(input)
+	cleaned = strings.Trim(cleaned, "[]")
+
+	// Handle space-separated input by replacing spaces with commas.
+	if strings.Contains(cleaned, " ") && !strings.Contains(cleaned, ",") {
+		cleaned = strings.ReplaceAll(cleaned, " ", ",")
+	}
+
+	// Use a regex to clean up multiple commas or trailing commas.
+	re := regexp.MustCompile(`,\s*,|,\s*$`)
+	cleaned = re.ReplaceAllString(cleaned, ",")
+
+	// Ensure the result is enclosed in square brackets.
+	return "[" + cleaned + "]"
+}
+
 // AsSliceInt converts the Result Result to a slice of integers.
 func (o Result) AsSliceInt() ([]int, error) {
+	value := cleanInput(o.Value)
+
 	var result []int
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceInt8 converts the Result Result to a slice of int8.
 func (o Result) AsSliceInt8() ([]int8, error) {
+	value := cleanInput(o.Value)
+
 	var result []int8
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceInt16 converts the Result Result to a slice of int16.
 func (o Result) AsSliceInt16() ([]int16, error) {
+	value := cleanInput(o.Value)
+
 	var result []int16
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceInt32 converts the Result Result to a slice of int32.
 func (o Result) AsSliceInt32() ([]int32, error) {
+	value := cleanInput(o.Value)
+
 	var result []int32
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceInt64 converts the Result Result to a slice of int64.
 func (o Result) AsSliceInt64() ([]int64, error) {
+	value := cleanInput(o.Value)
+
 	var result []int64
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUint converts the Result Result to a slice of uint.
 func (o Result) AsSliceUint() ([]uint, error) {
+	value := cleanInput(o.Value)
+
 	var result []uint
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUint8 converts the Result Result to a slice of uint8.
 func (o Result) AsSliceUint8() ([]uint8, error) {
+	value := cleanInput(o.Value)
+
 	var result []uint8
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUint16 converts the Result Result to a slice of uint16.
 func (o Result) AsSliceUint16() ([]uint16, error) {
+	value := cleanInput(o.Value)
+
 	var result []uint16
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUint32 converts the Result Result to a slice of uint32.
 func (o Result) AsSliceUint32() ([]uint32, error) {
+	value := cleanInput(o.Value)
+
 	var result []uint32
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUint64 converts the Result Result to a slice of uint64.
 func (o Result) AsSliceUint64() ([]uint64, error) {
+	value := cleanInput(o.Value)
+
 	var result []uint64
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceUintptr converts the Result Result to a slice of uintptr.
 func (o Result) AsSliceUintptr() ([]uintptr, error) {
+	value := cleanInput(o.Value)
+
 	var result []uintptr
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceByte converts the Result Result to a slice of byte.
 func (o Result) AsSliceByte() ([]byte, error) {
+	value := cleanInput(o.Value)
+
 	var result []byte
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceRune converts the Result Result to a slice of rune.
 func (o Result) AsSliceRune() ([]rune, error) {
+	value := cleanInput(o.Value)
+
 	var result []rune
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceFloat32 converts the Result Result to a slice of float32.
 func (o Result) AsSliceFloat32() ([]float32, error) {
+	value := cleanInput(o.Value)
+
 	var result []float32
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceFloat64 converts the Result Result to a slice of float64.
 func (o Result) AsSliceFloat64() ([]float64, error) {
+	value := cleanInput(o.Value)
+
 	var result []float64
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceComplex64 converts the Result Result to a slice of complex64.
 func (o Result) AsSliceComplex64() ([]complex64, error) {
+	value := cleanInput(o.Value)
+
 	var result []complex64
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceComplex128 converts the Result Result to a slice of complex128.
 func (o Result) AsSliceComplex128() ([]complex128, error) {
+	value := cleanInput(o.Value)
+
 	var result []complex128
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceBool converts the Result Result to a slice of bools.
 func (o Result) AsSliceBool() ([]bool, error) {
+	value := cleanInput(o.Value)
+
 	var result []bool
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }
 
 // AsSliceString converts the Result Result to a slice of strings.
 func (o Result) AsSliceString() ([]string, error) {
+	value := cleanInput(o.Value)
+
 	var result []string
-	err := json.Unmarshal([]byte(o.Value), &result)
+	err := json.Unmarshal([]byte(value), &result)
 	return result, err
 }

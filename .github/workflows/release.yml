@@ -1,0 +1,28 @@
+name: Tag and Release on Merge to Master
+
+on:
+  push:
+    branches: ["master"]
+
+permissions:
+  contents: write # Set specific permissions required for this workflow
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false # Use personal access token instead of GITHUB_TOKEN
+          fetch-depth: 0
+
+      # Step 2: Run go-semantic-release with goreleaser hooks
+      - name: Run go-semantic-release
+        uses: go-semantic-release/action@c4b01b1c0e0ad2362e01b6d06b0bb2f5b4ff0417 # Pinned to a specific commit SHA
+        with:
+          hooks: goreleaser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
